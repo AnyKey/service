@@ -1,0 +1,23 @@
+{
+  "debug": true,
+  "grpc": {
+    "port": ":50050"
+  },
+  "redis": {
+    "port": "localhost:6379"
+  },
+  "server": {
+    "address": "localhost:1230"
+  },
+  "postgres": {
+    "host": "localhost",
+    "dbname": "test",
+    "user": "postgres",
+    "password": "123",
+    "port": 5432,
+    "sslMode": "disable",
+    "maxOpenConnect": 100,
+    "maxIdleConnect": 100,
+    "connLifetime": 30
+  }
+}

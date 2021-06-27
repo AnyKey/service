@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<label>
+    <input id="get" type="button" value="Search">
+</label>
+<table border="black" width="35%">
+    <thead>
+    <tr>
+        <th>Название канала</th>
+    </tr>
+    </thead>
+    <tbody id="list">
+    </tbody>
+</table>
+<script>
+$("#get").click(function () {
+
+
+var requestOptions = {
+method: 'GET',
+redirect: 'follow'
+};
+
+fetch('http://localhost:1230/subscriptions_list', requestOptions)
+.then(data => data.json())
+.then(json => renderList(json))
+});
+
+function renderList(json) {
+
+    $("#list").empty();
+    if (json == null) {
+        return null;
+    }
+    $("#list").append(json.map(elem => {
+        let el = $("<tr>").append(`
+                    <td>${elem.title}</td>
+            `);
+
+        return el;
+    }))
+}
+</script>
+</body>
+</html>
