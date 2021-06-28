@@ -34,8 +34,9 @@ func (*delivery) GetSubscriptions(token string) (*user.List, error) {
 	query.Add("part", "contentDetails")
 	query.Add("part", "snippet")
 	query.Add("mine", "true")
+	query.Add("maxResults", "100")
 	req.URL.RawQuery = query.Encode()
-	req.Header.Add("Authorization", "Bearer " + token)
+	req.Header.Add("Authorization", "Bearer "+token)
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return nil, errors.Wrap(err, "Error request")

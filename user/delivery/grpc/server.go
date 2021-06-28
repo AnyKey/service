@@ -23,5 +23,5 @@ func Launch(s *grpc.Server, uuc user.Usecase) {
 func (s *grpcServer) GetToken(ctx context.Context, in *proto.GetTokenRequest) (*proto.GetTokenResponse, error) {
 	log.Debugf("Received: %v", in.GetToken())
 	s.usecase.SetToken(in.Token)
-	return &proto.GetTokenResponse{Message: in.GetToken() + " Received"}, nil
+	return &proto.GetTokenResponse{Message: "Token received"}, nil
 }

@@ -27,12 +27,10 @@ func (uuc *userUseCase) SetToken(token string) error {
 		return err
 	}
 	uuc.userRepo.SetToken(ctx, bytes)
-	lol := uuc.userRepo.GetToken(ctx)
-	log.Infoln("token added ", *lol)
 	return nil
 }
 
-func (uuc *userUseCase) GetList() ([]user.TitleList,error) {
+func (uuc *userUseCase) GetList() ([]user.TitleList, error) {
 	ctx := context.Background()
 	token := uuc.userRepo.GetToken(ctx)
 	res, err := uuc.userHttpDelivery.GetSubscriptions(*token)
@@ -40,12 +38,12 @@ func (uuc *userUseCase) GetList() ([]user.TitleList,error) {
 		log.Errorln("[GetList] Error: ", err)
 		return nil, err
 	}
-	list:= make([]user.TitleList, 0)
+	list := make([]user.TitleList, 0)
 
-	for i:= range res.Items{
+	for i := range res.Items {
 		list = append(list, res.Items[i].Snippet)
 	}
 
-	log.Infoln("token added ", list)
+	log.Infoln("sub list received")
 	return list, nil
 }
